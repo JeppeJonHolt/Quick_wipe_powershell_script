@@ -1,7 +1,8 @@
 $testchoco = powershell choco -v
+
 if(-not($testchoco)){
     Write-Output "Seems Chocolatey is not installed, installing now"
-    Set-ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+    Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
     chocolatey feature enable -n allowGlobalConfirmation #to skip confimation step
 }
 else{
@@ -11,8 +12,6 @@ else{
     #choco uninstall postgresql13
     #find a way to install barrier od Synergy
 }
-Install-with-choco
-set-exstensions_for_vscode
 function Install-with-choco {
     Install-Com
     install-creative
@@ -156,6 +155,8 @@ function themes {
     code --install-extension artisanbytecrafter.poptheme
     code --install-extension xen.vscode-theme-cenhanced
 }
+Install-with-choco
+set-exstensions_for_vscode
 #choco install vscode-arduino
 
 #software to add:
