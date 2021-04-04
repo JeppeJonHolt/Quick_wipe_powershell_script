@@ -171,7 +171,7 @@ function Set_PATH_Var{
     $newPath = "$oldpath;$Path"
     Set-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name PATH -Value $newPath
 }
-
+#problem with not updating context
 Set_PATH_Var "C:\Users\jeppe\AppData\Local\Postman"
 #choco install vscode-arduino
 
