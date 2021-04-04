@@ -1,17 +1,3 @@
-$testchoco = powershell choco -v
-
-if(-not($testchoco)){
-    Write-Output "Seems Chocolatey is not installed, installing now"
-    Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-    chocolatey feature enable -n allowGlobalConfirmation #to skip confimation step
-}
-else{
-    Write-Output "Chocolatey Version $testchoco is already installed"
-    chocolatey feature enable -n allowGlobalConfirmation
-    #Install-with-choco
-    #choco uninstall postgresql13
-    #find a way to install barrier od Synergy
-}
 function Install-with-choco {
     Install-Com
     install-creative
@@ -160,23 +146,3 @@ function themes {
 }
 Install-with-choco
 set-exstensions_for_vscode
-
-function Set_PATH_Var{
-    Param(
-    [parameter(Mandatory=$true)]
-    [String]
-    $Path)
-    $oldpath = (Get-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name PATH).path
-    Write-Host $Path
-    $newPath = "$oldpath;$Path"
-    Set-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment' -Name PATH -Value $newPath
-}
-#problem with not updating context
-Set_PATH_Var "C:\Users\jeppe\AppData\Local\Postman"
-#choco install vscode-arduino
-
-#software to add:
-#(clover)http://en.ejie.me/
-#(TreeSize)https://www.jam-software.com/treesize_free
-#(Ditto)https://ditto-cp.sourceforge.io/ 
-#(Quicklook)
