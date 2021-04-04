@@ -12,3 +12,5 @@ else{
     #choco uninstall postgresql13
     #find a way to install barrier od Synergy
 }
+#Write-Output "$PSScriptRoot"
+Start-Process powershell -verb runas -ArgumentList "-file $PSScriptRoot\Program_install.ps1"
