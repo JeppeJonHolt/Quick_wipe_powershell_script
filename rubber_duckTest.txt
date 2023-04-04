@@ -1,0 +1,18 @@
+DELAY 2000
+GUI r
+DELAY 500
+STRING powershell
+ENTER
+DELAY 2000
+STRING $URL = "https://api.github.com/repos/microsoft/winget-cli/releases/latest"
+ENTER
+STRING $URL = (Invoke-WebRequest -Uri $URL).Content | ConvertFrom-Json | Select-Object -ExpandProperty "assets" | Where-Object "browser_download_url" -Match '.msixbundle' | Select-Object -ExpandProperty "browser_download_url"
+ENTER
+STRING Invoke-WebRequest -Uri $URL -OutFile "Setup.msix" -UseBasicParsing
+ENTER
+STRING Add-AppxPackage -Path "Setup.msix"
+ENTER
+STRING Remove-Item "Setup.msix"
+ENTER
+DELAY 5000
+ALT F4
