@@ -15,10 +15,6 @@ $packages = @(
 )
 
 foreach ($package in $packages) {
-    if (Get-Package -Name $package -ErrorAction SilentlyContinue) {
-        Write-Host "$package is already installed"
-    } else {
-        Write-Host "$package is not installed, installing now..."
-        winget install $package
-    }
+    Write-Host "$package: installing now..."
+    winget install $package
 }
