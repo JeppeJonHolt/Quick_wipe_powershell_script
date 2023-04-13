@@ -1,0 +1,39 @@
+DELAY 2000
+GUI r
+DELAY 500
+STRING powershell
+ENTER
+DELAY 2000
+STRING Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
+ENTER
+STRING $URL = "https://api.github.com/repos/microsoft/winget-cli/releases/latest"
+ENTER
+STRING $URL = (Invoke-WebRequest -Uri $URL).Content | ConvertFrom-Json | Select-Object -ExpandProperty "assets" | Where-Object "browser_download_url" -Match '.msixbundle' | Select-Object -ExpandProperty "browser_download_url"
+ENTER
+STRING Invoke-WebRequest -Uri $URL -OutFile "Setup.msix" -UseBasicParsing
+ENTER
+STRING Add-AppxPackage -Path "Setup.msix"
+ENTER
+STRING Remove-Item "Setup.msix"
+ENTER
+REM Open PowerShell as administrator
+GUI r
+DELAY 500
+STRING powershell
+ENTER
+DELAY 2000
+STRING Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
+ENTER
+DELAY 1000
+STRING Start-Process powershell -Verb RunAs
+ENTER
+DELAY 5000
+
+REM Download the script and save it to a file
+STRING (New-Object System.Net.WebClient).DownloadFile('https://raw.githubusercontent.com/JeppeJonHolt/Quick_wipe_powershell_script/main/wingetJamie_Edition.ps1', 'C:\Users\Public\winget.ps1')
+ENTER
+DELAY 1000
+
+REM Run the script as an administrator
+STRING Start-Process powershell.exe -ArgumentList '-File "C:\Users\Public\winget.ps1"' -Verb RunAs
+ENTER
