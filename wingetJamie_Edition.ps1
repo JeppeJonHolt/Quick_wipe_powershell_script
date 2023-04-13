@@ -1,19 +1,19 @@
 $packages = @(
     "Microsoft.VisualStudio.2022.Community --silent --override '--wait --quiet --addProductLang En-us --add Microsoft.VisualStudio.Workload.NetWeb --add Microsoft.VisualStudio.Workload.ManagedDesktop --add Microsoft.VisualStudio.Workload.Unity'",
     "Discord.Discord",
-    "Telerik.Fiddler.Classic",
+    # "Telerik.Fiddler.Classic",
     "GitHub.GitHubDesktop",
     "Git.Git",
     "Postman.Postman",
-    "NordVPN.NordVPN",
+    # "NordVPN.NordVPN",
     "Microsoft.VisualStudioCode",
     "Microsoft.PowerToys",
     "devtoys",
     "python",
-    "ColdTurkeySoftware.ColdTurkeyBlocker",
-    "Valve.Steam"
+    # "ColdTurkeySoftware.ColdTurkeyBlocker",
+    "Valve.Steam",
+    "Mozilla.Firefox"
 )
-
 # Install winget
 Invoke-WebRequest -Uri https://github.com/microsoft/winget-cli/releases/download/v1.1.1264/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.appxbundle -OutFile winget.appxbundle
 Add-AppxPackage .\winget.appxbundle
