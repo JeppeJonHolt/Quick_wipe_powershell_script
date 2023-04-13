@@ -24,5 +24,5 @@ Invoke-WebRequest -Uri https://download.visualstudio.microsoft.com/download/pr/c
 
 foreach ($package in $packages) {
     Write-Host "$($package): installing now..."
-    winget install $package
+    winget install -e $package
 }
