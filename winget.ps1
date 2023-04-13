@@ -12,7 +12,7 @@ $packages = @(
     "python",
     # "ColdTurkeySoftware.ColdTurkeyBlocker",
     "Valve.Steam",
-    "firefox"
+    "Mozilla.Firefox"
 )
 
 foreach ($package in $packages) {
