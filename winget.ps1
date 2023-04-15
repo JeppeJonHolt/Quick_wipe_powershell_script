@@ -1,5 +1,5 @@
 $packages = @(
-    "Microsoft.VisualStudio.2022.Community --silent --override '--wait --quiet --addProductLang En-us --add Microsoft.VisualStudio.Workload.NetWeb --add Microsoft.VisualStudio.Workload.ManagedDesktop --add Microsoft.VisualStudio.Workload.Unity'",
+    "Microsoft.VisualStudio.2022.Community",
     "Discord.Discord",
     "Telerik.Fiddler.Classic",
     "GitHub.GitHubDesktop",
